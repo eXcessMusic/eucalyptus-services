@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <div id="log">
+        {% if user.is_authenticated %}
+            <span><u>Connecté</u> : {{user}}</span>
+            <a href="{% url 'log_out' %}" id="logout-button">Déconnexion</a>
+        {% else %}
+            <a href="{% url 'log_in' %}" class="connect-buttons">Se connecter</a>
+            <a href="{% url 'register' %}" class="connect-buttons">Inscription</a>
+        {% endif %}
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+    <footer>
+        <p>&copy; Copyright 2024 — Fait avec &#9829; par Thibault Paillon.</p>
+{% comment %}         <img src="/static/assets/excesslogostoryTurquoise small.png" alt="logo eXcess" id="logo"/>   {% endcomment %}
+    </footer>
+</body>
+</html>
