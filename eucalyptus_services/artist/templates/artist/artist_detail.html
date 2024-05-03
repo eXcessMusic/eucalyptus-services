@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Artist : {{artist.name}} {% endblock %}
+{% block content %}
+<div id="artist-detail">
+    <div class="forms-template">
+        <div id="socialsContainer">
+            <img src="/media/{{artist.artist_logo}}" class="artistLogo" style="width: 100px;">
+            <h2>{{ artist.name}}</h2>
+            <p>{{ artist.description }}</p>
+            <div id="socialsButtons">
+                <a href="{{ artist.facebook }}" target="_blank" class="social-button"><i class="fab fa-facebook-f"></i></a>
+                <a href="{{ artist.instagram }}" target="_blank" class="social-button"><i class="fab fa-instagram"></i></a>
+                <a href="{{ artist.soundcloud }}" target="_blank" class="social-button"><i class="fab fa-soundcloud"></i></a>
+                <a href="{{ artist.spotify }}" target="_blank" class="social-button"><i class="fab fa-spotify"></i></a>
+                <a href="{{ artist.apple_music }}" target="_blank" class="social-button"><i class="fab fa-apple"></i></a>
+                <a href="{{ artist.tiktok }}" target="_blank" class="social-button"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+        <div id="action-buttons">
+            {% if user.is_superuser or artist.associated_user == request.user %}
+                <a href="{% url 'artist_update' pk=artist.id %}" class="button">⥹ Update Artist</a>
+                <a href="{% url 'artist_delete' pk=artist.id %}" class="delete" onclick="return confirm('Are you sure you want to delete this artist?')">× Delete Artist</a>
+            {% endif %}
+        </div>
+        <a href="{{ artist.id }}/links" class="bio-button">➔ See All Links</a>
+
+        {% if artist.song_set.exists %}
+        <h2>Songs :</h2>
+        <p id="text-song-edit">Click on a song to edit it.</p>
+        <ul id="songs-list">
+        {% for song in artist.song_set.all reversed %}
+            <li>
+                <a href="/song/update/{{ song.id }}" target="_blank">
+                    {{ song.name }}
+                </a>
+            </li>
+            <hr>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    </div>
+</div>
+{% endblock %}

@@ -3,12 +3,12 @@
 
 {% block content %}
 <div id="register-form">
-    <h1>Inscription</h1>
+    <h1>Register</h1>
     <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button type="submit">S'inscrire</button>
+    <button type="submit">Register</button>
     </form>
 </div>
 {% endblock %}

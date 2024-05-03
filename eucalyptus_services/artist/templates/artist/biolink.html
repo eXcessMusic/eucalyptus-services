@@ -1,0 +1,66 @@
+{% load fontawesome_6 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% fontawesome_6_static %} 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+<script src="{% static 'js/script.js' %}" defer></script>
+<div id="container">
+    <div id="socialsContainer">
+        <img src="/media/{{artist.artist_logo}}" class="artistLogo" style="width: 100px;">
+        <h2>{{ artist.name}}</h2>
+        <p>{{ artist.description }}</p>
+        <div id="socialsButtons">
+            <a href="{{ artist.facebook }}" target="_blank" class="social-button"><i class="fab fa-facebook-f"></i></a>
+            <a href="{{ artist.instagram }}" target="_blank" class="social-button"><i class="fab fa-instagram"></i></a>
+            <a href="{{ artist.soundcloud }}" target="_blank" class="social-button"><i class="fab fa-soundcloud"></i></a>
+            <a href="{{ artist.spotify }}" target="_blank" class="social-button"><i class="fab fa-spotify"></i></a>
+            <a href="{{ artist.apple_music }}" target="_blank" class="social-button"><i class="fab fa-apple"></i></a>
+            <a href="{{ artist.tiktok }}" target="_blank" class="social-button"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </div>
+    <p class="arrow-explanation">Click the arrow symbol to expand &#8964;</p>
+    {% for song in songs reversed %}
+    <div class="link-item">
+        <img src="/media/{{ song.artwork }}" class="album-artwork">
+            <div class="link-content">
+                <span class="album-title">{{ song.name }}</span>
+                <i class="fas fa-chevron-down arrow-icon expand"></i>
+                <div class="platform-icons" style="display: none;">
+                    {% if song.soundcloud_url %}
+                        <a href="{{ song.soundcloud_url }}" target="_blank" class="social-button"><i class="fab fa-soundcloud"></i></a>
+                    {% endif %}
+                    {% if song.spotify_url %}
+                        <a href="{{ song.spotify_url }}" target="_blank" class="social-button"><i class="fab fa-spotify"></i></a>
+                    {% endif %}
+                    {% if song.applemusic_url %}
+                        <a href="{{ song.applemusic_url }}" target="_blank" class="social-button"><i class="fab fa-apple"></i></a>
+                    {% endif %}
+                    {% if song.youtube_url %}
+                        <a href="{{ song.youtube_url }}" target="_blank" class="social-button"><i class="fab fa-youtube"></i></a>
+                    {% endif %}
+                    {% if song.deezer_url %}
+                        <a href="{{ song.deezer_url }}" target="_blank" class="social-button"><i class="fab fa-deezer"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No songs found.</p>
+    {% endfor %}
+    <p id="copyright">&copy; Copyright 2024 — Made with &#9829; by Thibault Paillon.</p>
+    <a href="{% url 'artist_list' %}"><img src="{% static 'media/LogoEucalyptusHolo.png' %}" id="logo-nav" tooltip="Click to see all artists."></a>
+    </div>
+    <footer>
+{% comment %}         <img src="/static/assets/excesslogostoryTurquoise small.png" alt="logo eXcess" id="logo"/>   {% endcomment %}
+    </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Create a new artist{% endblock %}
+
+{% block content %}
+<div id="article-create">
+    <div class="forms-template">
+        <h1>Create a new artist</h1>
+        
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        Name :<br>
+        {{ form.name }}<br><br>
+        Description :<br>
+        {{ form.description }}<br><br>
+        Logo :<br>
+        {{ form.artist_logo }}<br><br>
+        <h2>Socials</h2>
+        <div id="create-socials">
+            <div class="social-inputs">
+                <i class="fab fa-facebook-f"></i>
+                <input type="text" name="facebook" placeholder="Enter Facebook URL">
+            </div>
+            <div class="social-inputs">
+                <i class="fab fa-instagram"></i>
+                <input type="text" name="instagram" placeholder="Enter Instagram URL">
+            </div>
+            <div class="social-inputs">
+                <i class="fab fa-soundcloud"></i>
+                <input type="text" name="soundcloud" placeholder="Enter SoundCloud URL">
+            </div>
+            <div class="social-inputs">
+                <i class="fab fa-spotify"></i>
+                <input type="text" name="spotify" placeholder="Enter Spotify URL">
+            </div>
+            <div class="social-inputs">
+                <i class="fab fa-apple"></i>
+                <input type="text" name="apple_music" placeholder="Enter Apple Music URL">
+            </div>
+            <div class="social-inputs">
+                <i class="fab fa-tiktok"></i>
+                <input type="text" name="tiktok" placeholder="Enter TikTok URL">
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="form-submit-button">Create New Artist</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

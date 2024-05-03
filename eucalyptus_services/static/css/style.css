@@ -5,6 +5,13 @@ body {
     font-family: Avenir, sans-serif;
 }
 
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    body {
+        margin: 0;
+    }
+}
+
 body a {
     color: aquamarine;
     cursor: auto;
@@ -14,10 +21,12 @@ nav {
     background-color: rgb(17, 83, 83);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-left: 25px;
     padding-right: 25px;
     border-radius: 5px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.275);
+    border-top: 0.5px solid rgba(87, 252, 216, 0.656);
 }
 
 #search-bar {
@@ -76,7 +85,7 @@ nav a:hover {
     color: rgba(127, 255, 212, 0.604);
 }
 
-#article-detail, #article-list, #article-update, #article-create, #auteur-create, #login-form, #register-form {
+#article-detail, #article-list, #article-update, #article-create, #auteur-create, #login-form, #register-form, #song-create {
     background-color: rgb(17, 83, 83);
     padding: 25px;
     padding-top: 5px;
@@ -84,6 +93,20 @@ nav a:hover {
     margin-top: 10px;
     border-radius: 5px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.275);
+    border-top: 0.5px solid rgba(87, 252, 216, 0.656);
+}
+
+#article-update {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#update-socials {
+    display: grid;
+    grid-template-columns: 40px auto 10px;
+    gap: 10px; /* add a 10px gap between items */
 }
 
 .title {
@@ -97,7 +120,7 @@ nav a:hover {
     text-shadow: 0px 0px 20px rgba(127, 255, 212, 0.28);
 }
 
-#article-update button, #article-create button {
+#article-update button, #article-create button, #song-create button {
     font-weight: bolder;
     background-color: aquamarine;
     color:  rgb(13, 62, 62);
@@ -123,11 +146,12 @@ nav a:hover {
 #article-create button:hover,
 #auteur-create button:hover,
 #login-form button:hover,
-#register-form button:hover {
+#register-form button:hover, #song-create button:hover {
     cursor: auto;
     background-color: rgb(7, 36, 36);
     color: aquamarine;
     box-shadow: 0px 0px 20px aquamarine;
+    border: 0.5px solid rgba(87, 252, 216, 1);
 }
 
 #article-update  input[type="text"],
@@ -144,6 +168,7 @@ textarea, #article-create  input[type="text"],
     border-radius: 2px;
 }
 
+
 .button {
     text-decoration: none;
     font-weight: bolder;
@@ -151,7 +176,6 @@ textarea, #article-create  input[type="text"],
     color:  rgb(13, 62, 62);
     border-radius: 3px;
     padding: 10px;
-    margin-top: 100px;
     border-style: none;
     transition: all .2s ease-in-out;
 }
@@ -161,7 +185,17 @@ textarea, #article-create  input[type="text"],
     background-color: rgb(7, 36, 36);
     color: aquamarine;
     box-shadow: 0px 0px 20px aquamarine;
+    border: 0.5px solid rgba(87, 252, 216, 1);
 }
+
+@media only screen and (max-width: 767px) {
+    .button, .delete {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
 
 .delete {
     text-decoration: none;
@@ -170,7 +204,6 @@ textarea, #article-create  input[type="text"],
     color:  rgb(13, 62, 62);
     border-radius: 3px;
     padding: 10px;
-    margin-top: 100px;
     border-style: none;
     transition: all .2s ease-in-out;
 }
@@ -180,28 +213,38 @@ textarea, #article-create  input[type="text"],
     background-color: rgb(56, 27, 44);
     color: rgb(255, 127, 200);
     box-shadow: 0px 0px 20px rgb(255, 127, 200);
+    border: 0.5px solid rgb(255, 127, 200);
+}
+
+.delete#song-delete {
+    display: block;
+    width: 95%;
+    text-align: center;
+    font-size:  15px;
 }
 
 #log {
     display: flex;
+    flex-direction: row;
     margin-left: auto;
+    align-items: center;
+    
 }
 
 #log a, #log span {
-    font-size: 20px;
+    font-size: 15px;
     padding: 5px;
     margin-left: 10px;
     transition: all .2s ease-in-out;
 }
 
 #log a:hover {
-    font-size: 20.5px;
+    font-size: 15.5px;
 }
 
 #log span {
     font-weight: normal;
     color: white;
-    margin-right: 15px;
 }
 
 #logo {
@@ -213,8 +256,6 @@ textarea, #article-create  input[type="text"],
 }
 
 footer p {
-    position: fixed;
-    left: 39%;
     font-family: "Avenir Next", sans-serif;
     bottom: 0px;
     display: flex;
@@ -227,21 +268,28 @@ footer p {
 }
 
 #logout-button {
-    border: 1px solid aquamarine;
+    border: 1px solid rgb(255, 127, 200);
+    color: rgb(255, 127, 200);
     border-radius: 3px;
     padding-left: 10px;
     padding-right: 10px;
     cursor: auto;
 }
 
+#logout-button:hover {
+    box-shadow: 0px 0px 20px rgb(255, 127, 200);
+}
+
 .connect-buttons {
+    display: flex;
+    flex-direction: row;
     border: 1px solid aquamarine;
     border-radius: 3px;
     cursor: auto;
 }
 
-#author-list {
-    margin-top: -20px;
+.connect-buttons:hover {
+    box-shadow: 0px 0px 20px aquamarine;
 }
 
 #register-form {
@@ -250,4 +298,363 @@ footer p {
 
 #register-form h1 {
     margin-top: -5px;
+}
+
+#login-form input {
+    width: 250px;
+}
+
+input {
+    outline: none;
+    border: none;
+    width: 95%;
+    padding: 10px;
+    margin: 1px;
+    border-bottom: 2px solid aquamarine;
+    background-color:rgb(13, 62, 62);
+    color: rgba(127, 255, 212, 0.604);
+    border-radius: 2px;
+}
+
+.sized-logo {
+    height: 50px;
+    width: auto;
+    padding-top: 10px
+}
+
+.forms-template {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 400px;
+}
+
+.form-submit-button {
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+#socialsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+#socialsButtons {
+    display: flex;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Set the width of each social button */
+    height: 40px; /* Set the height of each social button */
+    border-radius: 50%; /* Make the social buttons round */
+    border: 1px solid white;
+    margin-right: 10px; /* Add margin between social buttons */
+    /* background-color: #007bff; Set the background color of the social buttons */
+    color: #fff; /* Set the color of the social button icons */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.2s;
+}
+
+.social-button i {
+    font-size: 20px; /* Adjust the size of the social button icons */
+}
+
+.social-button:hover {
+    background-color: white;
+    color: black; /* Change the color of the social button icons on hover */
+}
+
+.links-list {
+    display: none; /* Hide the links list by default */
+}
+
+.link-item.expanded .links-list {
+    display: flex; /* Display the links list when the link item is expanded */
+}
+
+
+.link-item {
+    display: flex;
+    align-items: center; /* Center vertically */
+    height: 50px;
+    width: 400px;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: rgb(23, 123, 123);
+    color: white;
+    padding: 5px;
+    position: relative; /* Add positioning context to the link item */
+    transition: all 0.2s ease-in-out; /* Add transition for height */
+    border-top: 0.5px solid rgba(87, 252, 216, 0.656);
+}
+
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    .link-item {
+        width: calc(100% - 10px); /* Make sure each link takes up at least one row on small screens */
+    }
+}
+
+.album-artwork {
+    width: 50px; /* Adjust the width of the artwork */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Adjust margin between artwork and link */
+    border-radius: 3px;
+    box-shadow: 0 5px 5px rgba(103, 93, 93, 0.25), 0 -1px 0 rgba(255, 255, 255, 0.258);
+}
+
+.album-title {
+    text-decoration: none; /* Remove underline */
+    margin-left: 5px;
+    text-shadow: 0 2px  6px rgba(0, 0, 0, 0.4);
+        /* Allow text to wrap to 2 lines */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-width: 260px;
+}
+
+.platform-icons {
+    display: flex;
+    margin-top: 10px; /* Add margin between album title and platform icons */
+}
+
+.expanded {
+    height: auto; /* Allow the container to expand to fit the content when icons are expanded */
+    transition: all .2s ease-in-out; /* Create a smooth animation for the expansion */
+    padding: 10px;
+    box-shadow: 0 15px 50px rgb(29, 50, 46);
+    border: 0.5px solid rgba(87, 252, 216, 0.656);
+}
+
+#container {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 50px rgba(10, 56, 51, 0.25), 0 -0.5px 0 rgba(87, 252, 216, 0.656);
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    background-color: rgb(17, 83, 83);
+    position: relative;
+}
+
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    #container {
+        width: 100%;
+        padding: 20px 10px;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: rgb(17, 83, 83);
+    }
+}
+
+.arrow-icon {
+    position: absolute;
+    top: 20px; /* Adjust the distance from the top */
+    right: 20px; /* Adjust the distance from the right */
+    font-size: 16px; /* Adjust the size of the arrow icon */
+    color: white; /* Set the color of the arrow icon */
+    transition: transform 0.2s ease-in-out; /* Add transition for smooth rotation */
+    text-shadow: 0 2px  6px rgba(0, 0, 0, 0.4);
+}
+
+a.link-item:hover i.arrow-icon {
+    color:black !important;
+}
+
+/* Rotate the arrow icon to point downwards when the link item is expanded */
+.link-item.expanded .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.arrow-explanation {
+    z-index: 10;
+    margin-top: 10px;
+    margin-bottom: -3px;
+    margin-right: 50px;
+    align-self: flex-end;
+    color: rgb(23, 123, 123);
+    font-size: 14px;
+}
+
+#action-buttons {
+    display: grid;
+    grid-template-columns:195px 1fr;
+    gap: 10px; /* add a 10px gap between items */
+    margin-top: 0;
+}
+
+.bio-button {
+    text-decoration: none;
+    text-align: center;
+    font-weight: bolder;
+    background-color: aquamarine;
+    color:  rgb(13, 62, 62);
+    border-radius: 3px;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    border-style: none;
+    transition: all .2s ease-in-out;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.374);
+}
+
+.bio-button:hover {
+    cursor: pointer;
+    background-color: rgb(7, 36, 36);
+    color: aquamarine;
+    box-shadow: 0px 0px 20px aquamarine;
+    border: 0.5px solid rgba(87, 252, 216, 1);
+}
+
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    .bio-button {
+        width: 87%;
+    }
+}
+
+#text-song-edit {
+    margin: 0px;
+}
+
+#songs-list {
+    padding-inline-start: 0px;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#songs-list a {
+    transition: all .2s ease-in-out;
+}
+
+#songs-list a:hover {
+    color: rgb(192, 255, 234);
+    background-color: rgb(13, 62, 62);
+    padding: 5px;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    background-color:rgb(7, 36, 36);
+}
+
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    #songs-list {
+        width: 87%;
+    }
+}
+
+#artist-detail {
+    background-color: rgb(17, 83, 83);
+    padding: 25px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.275);
+    border-top: 0.5px solid rgba(87, 252, 216, 0.656);
+}
+
+#create-socials {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    align-items: center;
+}
+
+.social-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.social-inputs input::placeholder {
+    color: aquamarine;
+}
+
+#copyright {
+    padding-top: 25px;
+    color: rgb(8, 52, 52);
+}
+
+#logo-nav {
+    width: 75px;
+    height: 75px;
+}
+
+/* new hamburger */
+
+/* Style the navigation menu */
+.topnav {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+    display: none;
+    position: fixed;
+    background-color: rgb(9, 47, 47);
+    padding: 20px;
+    border-radius: 5px;
+    padding-bottom: 0;
+    margin-left: 10px;
+    box-shadow: 0px 5px 20px rgba(127, 255, 212, 0.74);
+}
+
+  /* Style navigation menu links */
+.topnav a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+    font-size: 50px;
+    overflow: hidden;
+    padding: 10px;
+    margin-left: 10px;
+    z-index: 2;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+    color: aquamarine;
+}
+
+/* Style the active link (or home/logo) */
+.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.burger-buttons {
+    font-weight: bold;
+}
+
+.burger-buttons:hover {
+    font-size: 17.5px;
+    font-weight: bolder;
 }

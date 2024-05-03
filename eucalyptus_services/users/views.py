@@ -11,7 +11,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('article_list')
+            return redirect('artist_list')
 
     return render(request, 'users/register.html', {'form': RegisterForm})
 
@@ -25,12 +25,12 @@ def log_in(request):
             user = authenticate(request, username=username_form, password=password_form)
             if user:
                 login(request,user)
-                messages.success(request,f"Bienvenue {username_form}!")
-                return redirect('article_list')
+                messages.success(request,f"Welcome {username_form}!")
+                return redirect('artist_list')
             
     return render(request, 'users/login.html', {'form': LoginForm})
 
 def log_out(request):
     logout(request)
-    return redirect('article_list')
+    return redirect('artist_list')
 

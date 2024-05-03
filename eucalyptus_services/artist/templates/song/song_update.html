@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Song Update{% endblock %}
+
+{% block content %}
+    <div id="article-update">
+        <div class="forms-template">
+            <h1>Update song details</h1>
+            
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="name">Name :</label>
+                {{ form.name }}
+                
+                <label for="artist" hidden>Artist :</label>
+                {{ form.artist.readonly }}<br><br>
+            
+                <label for="artwork">Artwork :</label>
+                {{ form.artwork }}<br><br>
+            
+                <label for="soundcloud_url">SoundCloud URL :</label>
+                {{ form.soundcloud_url }}<br><br>
+            
+                <label for="spotify_url">Spotify URL :</label>
+                {{ form.spotify_url }}<br><br>
+            
+                <label for="applemusic_url">Apple Music URL :</label>
+                {{ form.applemusic_url }}<br><br>
+            
+                <label for="deezer_url">Deezer URL :</label>
+                {{ form.deezer_url }}<br><br>
+            
+                <label for="youtube_url">YouTube URL :</label>
+                {{ form.youtube_url }}<br><br>
+            
+                <button type="submit" class="form-submit-button">Update Song</button><br><br>
+                
+                <a href="{% url 'song_delete' pk=song.id %}" class="delete" id="song-delete" onclick="return confirm('Are you sure you want to delete this song?')">× Delete Song</a>
+            </form>
+    </div>
+{% endblock %}

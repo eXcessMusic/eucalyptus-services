@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Create a new song{% endblock %}
+
+{% block content %}
+<div id="song-create">
+    <div class="forms-template">
+        <h1>Create a new song</h1>
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="name">Name :</label>
+            {{ form.name }}
+            
+            <br><br>
+            {% if request.user.is_superuser %}
+            <label for="artist">Artist :</label>
+                {{ form.artist }}
+            {% else %}
+            <label for="artist" hidden>Artist :</label>
+                <input type="text" name="artist" value="{{ request.user.artist.id }}" readonly hidden>
+            {% endif %}
+            <br><br>
+        
+            <label for="artwork">Artwork :</label>
+            {{ form.artwork }}<br><br>
+        
+            <label for="soundcloud_url">SoundCloud URL :</label>
+            {{ form.soundcloud_url }}<br><br>
+        
+            <label for="spotify_url">Spotify URL :</label>
+            {{ form.spotify_url }}<br><br>
+        
+            <label for="applemusic_url">Apple Music URL :</label>
+            {{ form.applemusic_url }}<br><br>
+        
+            <label for="deezer_url">Deezer URL :</label>
+            {{ form.deezer_url }}<br><br>
+        
+            <label for="youtube_url">YouTube URL :</label>
+            {{ form.youtube_url }}<br><br>
+        
+            <button type="submit">Create Song</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

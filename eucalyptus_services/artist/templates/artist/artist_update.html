@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Artist Update{% endblock %}
+
+{% block content %}
+    <div id="article-update">
+        <h1>Update Artist</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="name">Name :</label><br>
+            {{ form.name }}<br><br>
+        
+            <label for="description">Description :</label><br>
+            {{ form.description }}
+            
+            <br><br>
+            <label for="artist_logo">Artist Logo :</label><br><br>
+            {{ form.artist_logo }}
+            <h2>Socials</h2>
+            <p>You can click on the platform icon to preview the link associated.</p>
+            <div id="update-socials">
+            {% if social_media_links.facebook %}
+                <a href="{{ social_media_links.facebook }}" target="_blank" class="social-button"><i class="fab fa-facebook-f"></i></a>
+            {% endif %}
+            {{ form.facebook }}
+            <br>
+        
+            {% if social_media_links.instagram %}
+                <a href="{{ social_media_links.instagram }}" target="_blank" class="social-button"><i class="fab fa-instagram"></i></a>
+            {% endif %}
+            {{ form.instagram }}
+            <br>
+        
+            {% if social_media_links.soundcloud %}
+                <a href="{{ social_media_links.soundcloud }}" target="_blank" class="social-button"><i class="fab fa-soundcloud"></i></a>
+            {% endif %}
+            {{ form.soundcloud }}
+            <br><br>
+        
+            {% if social_media_links.spotify %}
+                <a href="{{ social_media_links.spotify }}" target="_blank" class="social-button"><i class="fab fa-spotify"></i></a>
+            {% endif %}
+            {{ form.spotify }}
+            <br>
+
+            {% if social_media_links.apple_music %}
+                <a href="{{ social_media_links.apple_music }}" target="_blank" class="social-button"><i class="fab fa-apple"></i></a>
+            {% endif %}
+            {{ form.apple_music }}
+            <br>
+        
+            {% if social_media_links.tiktok %}
+                <a href="{{ social_media_links.tiktok }}" target="_blank" class="social-button"><i class="fab fa-tiktok"></i></a>
+            {% endif %}
+            {{ form.tiktok }}
+            <br><br>
+            </div>
+            <br>
+            <button type="submit" class="form-submit-button">Update Artist</button>
+        </form>
+    </div>
+{% endblock %}
