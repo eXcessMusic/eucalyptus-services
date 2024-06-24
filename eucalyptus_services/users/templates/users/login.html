@@ -3,15 +3,17 @@
 
 {% block content %}
 <div id="login-form">
-    <h1>Login</h1>
-    <form method="POST">
-    {% csrf_token %}
-    Username : 
-    {{ form.username }}<br><br>
-    Password :
-    {{ form.password }}<br><br>
+    <div class="forms-template">
+        <h1>Login</h1>
+        <form method="POST">
+        {% csrf_token %}
+        Username : 
+        {{ form.username }}<br><br>
+        Password :
+        {{ form.password }}<br><br>
 
-    <button type="submit">Login</button>
-    </form>
+        <button type="submit">Login</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

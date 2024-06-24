@@ -1,17 +1,22 @@
 {% extends "base.html" %}
 {% block title %}Create a new song{% endblock %}
-
 {% block content %}
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+        <p class="message {{ message.tags }}">{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+<h1 id="artist-list">Create New Song</h1>
 <div id="song-create">
     <div class="forms-template">
-        <h1>Create a new song</h1>
         
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="name">Name :</label>
-            {{ form.name }}
+            <input type="text" name="name" placeholder="Enter the song name"><br>
             
-            <br><br>
             {% if request.user.is_superuser %}
             <label for="artist">Artist :</label>
                 {{ form.artist }}
@@ -23,23 +28,37 @@
         
             <label for="artwork">Artwork :</label>
             {{ form.artwork }}<br><br>
+
+            <h2>Platforms</h2>
+            <div id="create-socials">
+                <div class="social-inputs">
+                    <i class="fab fa-soundcloud"></i>
+                    <input type="text" name="soundcloud_url" placeholder="SoundCloud URL"><br><br>
+                </div>
         
-            <label for="soundcloud_url">SoundCloud URL :</label>
-            {{ form.soundcloud_url }}<br><br>
+                <div class="social-inputs">
+                    <i class="fab fa-spotify"></i>
+                    <input type="text" name="spotify_url" placeholder="Spotify URL"><br><br>
+                </div>
+                
+                <div class="social-inputs">
+                    <i class="fab fa-apple"></i>
+                    <input type="text" name="applemusic_url" placeholder="Apple Music URL"><br><br>
+                </div>
+                
+                <div class="social-inputs">
+                    <i class="fab fa-deezer"></i>
+                    <input type="text" name="deezer_url" placeholder="Deezer URL"><br><br>
+                </div>
+                
+                <div class="social-inputs">
+                    <i class="fab fa-youtube"></i>
+                    <input type="text" name="youtube_url" placeholder="YouTube URL"><br><br>
+                </div>
+            </div>
+            <br>
         
-            <label for="spotify_url">Spotify URL :</label>
-            {{ form.spotify_url }}<br><br>
-        
-            <label for="applemusic_url">Apple Music URL :</label>
-            {{ form.applemusic_url }}<br><br>
-        
-            <label for="deezer_url">Deezer URL :</label>
-            {{ form.deezer_url }}<br><br>
-        
-            <label for="youtube_url">YouTube URL :</label>
-            {{ form.youtube_url }}<br><br>
-        
-            <button type="submit">Create Song</button>
+            <button type="submit" class="submit-button">Create Song</button>
         </form>
     </div>
 </div>

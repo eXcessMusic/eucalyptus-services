@@ -1,31 +1,24 @@
-const expandList = document.querySelectorAll(".expand");
-expandList.forEach(element => {
-    element.addEventListener("click", toggleExpanded);
-});
 
-function toggleExpanded(event) {
-    const card = event.target.closest(".link-item");
-    if (card) {
-        const icons = card.querySelector(".platform-icons");
-        card.classList.toggle("expanded");
-        icons.style.display = card.classList.contains("expanded")? "flex" : "none";
-    }
-}
-/* toggleExpanded(index: number): void {
-    if (index >= 0 && index < this.linkItems.length) {
-      this.linkItems[index].expanded = !this.linkItems[index].expanded;
-    } else {
-      console.error('Invalid index:', index);
-    }
-  }  
-} */
+
+const burgerButton = document.querySelector('.burger');
+const menuLinks = document.getElementById("myLinks");
+
+burgerButton.addEventListener('click', displayMenu);
 
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
-function myFunction() {
+function displayMenu() {
   var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
+  if (x.style.opacity === "1") {
+    x.style.opacity = "0"; // Hide the menu with fade effect
+    setTimeout(function() {
+      x.style.display = "none"; // Hide the menu after fading out
+      burgerButton.classList.remove('cross'); // Remove the 'cross' class to revert the animation
+    }, 100); // Adjust the duration of the fade effect (in milliseconds)
   } else {
-    x.style.display = "block";
+    x.style.display = "block"; // Show the menu immediately
+    setTimeout(function() {
+      x.style.opacity = "1"; // Fade in the menu gradually
+    }, 10); // Add a slight delay before fading in for the effect
+    burgerButton.classList.add('cross'); // Add the 'cross' class to trigger the animation
   }
 }

@@ -9,6 +9,7 @@ body {
 @media only screen and (max-width: 767px) {
     body {
         margin: 0;
+        width: auto;
     }
 }
 
@@ -25,6 +26,7 @@ nav {
     padding-left: 25px;
     padding-right: 25px;
     border-radius: 5px;
+    height: 80px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.275);
     border-top: 0.5px solid rgba(87, 252, 216, 0.656);
 }
@@ -39,16 +41,6 @@ nav a {
     color: aquamarine;
     transition: all .2s ease-in-out;
     text-shadow: 0px 5px 20px black;
-}
-
-nav a:hover {
-    cursor: auto;
-    color: white;
-    background-color: rgb(9, 47, 47);
-    padding: 5px;
-    border-radius: 2px;
-    font-size: 101%;
-    text-shadow: 0px 5px 15px black;
 }
 
 #search-bar button {
@@ -88,12 +80,19 @@ nav a:hover {
 #article-detail, #article-list, #article-update, #article-create, #auteur-create, #login-form, #register-form, #song-create {
     background-color: rgb(17, 83, 83);
     padding: 25px;
-    padding-top: 5px;
+    padding-top: 20px;
     padding-bottom: 30px;
     margin-top: 10px;
     border-radius: 5px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.275);
     border-top: 0.5px solid rgba(87, 252, 216, 0.656);
+}
+
+@media only screen and (max-width: 767px) {
+    #article-list {
+        padding-right: 0px;
+    }
+
 }
 
 #article-update {
@@ -104,20 +103,18 @@ nav a:hover {
 }
 
 #update-socials {
-    display: grid;
-    grid-template-columns: 40px auto 10px;
     gap: 10px; /* add a 10px gap between items */
+    width: 100%;
 }
 
-.title {
-    text-shadow: 0px 5px 20px rgba(0, 0, 0, 0.716);
-    transition: all .2s ease-in-out;
+.socials-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
-.title:hover {
-    cursor: auto;
-    color: white;
-    text-shadow: 0px 0px 20px rgba(127, 255, 212, 0.28);
+.socials-row a {
+    width: 10%;
 }
 
 #article-update button, #article-create button, #song-create button {
@@ -127,6 +124,7 @@ nav a:hover {
     border-radius: 3px;
     padding: 10px;
     margin-top: 10px;
+    width: 100%;
     border-style: none;
     transition: all .2s ease-in-out;
 }
@@ -138,6 +136,7 @@ nav a:hover {
     border-radius: 3px;
     padding: 10px;
     margin-top: 10px;
+    width: 100%;
     border-style: none;
     transition: all .2s ease-in-out;
 }
@@ -147,11 +146,11 @@ nav a:hover {
 #auteur-create button:hover,
 #login-form button:hover,
 #register-form button:hover, #song-create button:hover {
-    cursor: auto;
+    cursor: pointer;
     background-color: rgb(7, 36, 36);
     color: aquamarine;
     box-shadow: 0px 0px 20px aquamarine;
-    border: 0.5px solid rgba(87, 252, 216, 1);
+    border: 1px solid rgba(87, 252, 216, 1);
 }
 
 #article-update  input[type="text"],
@@ -168,6 +167,28 @@ textarea, #article-create  input[type="text"],
     border-radius: 2px;
 }
 
+#artist-list {
+    background-color: rgb(17, 83, 83);
+    padding: 10px;
+    padding-left: 25px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    border-radius: 5px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.275);
+    border-top: 0.5px solid rgba(87, 252, 216, 0.656);
+}
+
+.page-title {
+    background-color: rgb(17, 83, 83);
+    padding: 10px;
+    padding-left: 25px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    border-radius: 5px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.275);
+    border-top: 0.5px solid rgba(87, 252, 216, 0.656);
+}
+
 
 .button {
     text-decoration: none;
@@ -181,18 +202,20 @@ textarea, #article-create  input[type="text"],
 }
 
 .button:hover {
-    cursor: auto;
+    cursor: pointer;
     background-color: rgb(7, 36, 36);
     color: aquamarine;
     box-shadow: 0px 0px 20px aquamarine;
-    border: 0.5px solid rgba(87, 252, 216, 1);
+    border: 1px solid rgba(87, 252, 216, 1);
 }
 
 @media only screen and (max-width: 767px) {
     .button, .delete {
         display: block;
-        width: 100%;
+        width: 88%;
+        margin: 0;
         margin-top: 10px;
+        gap: 0;
     }
 }
 
@@ -209,11 +232,11 @@ textarea, #article-create  input[type="text"],
 }
 
 .delete:hover {
-    cursor: auto;
+    cursor: pointer;
     background-color: rgb(56, 27, 44);
     color: rgb(255, 127, 200);
     box-shadow: 0px 0px 20px rgb(255, 127, 200);
-    border: 0.5px solid rgb(255, 127, 200);
+    border: 1px solid rgb(255, 127, 200);
 }
 
 .delete#song-delete {
@@ -239,6 +262,7 @@ textarea, #article-create  input[type="text"],
 }
 
 #log a:hover {
+    cursor: pointer;
     font-size: 15.5px;
 }
 
@@ -277,6 +301,7 @@ footer p {
 }
 
 #logout-button:hover {
+    cursor: pointer;
     box-shadow: 0px 0px 20px rgb(255, 127, 200);
 }
 
@@ -289,6 +314,7 @@ footer p {
 }
 
 .connect-buttons:hover {
+    cursor: pointer;
     box-shadow: 0px 0px 20px aquamarine;
 }
 
@@ -314,6 +340,19 @@ input {
     background-color:rgb(13, 62, 62);
     color: rgba(127, 255, 212, 0.604);
     border-radius: 2px;
+    transition: all .2s ease-in-out;
+}
+
+input:focus {
+    border: 0.5px solid aquamarine;
+    border-bottom: 2px solid aquamarine;
+    box-shadow: 0px 0px 20px rgba(127, 255, 212, 0.65);
+}
+
+input:invalid {
+    border: 0.5px solid rgb(244, 170, 212);
+    border-bottom: 2px solid rgb(244, 170, 212);
+    box-shadow: 0px 0px 20px rgba(244, 170, 212, 0.65);
 }
 
 .sized-logo {
@@ -327,6 +366,13 @@ input {
     flex-direction: column;
     margin: auto;
     width: 400px;
+}
+
+@media only screen and (max-width: 767px) {
+    .forms-template {
+        width: 100%;
+        align-items: center;
+    }
 }
 
 .form-submit-button {
@@ -344,8 +390,22 @@ ul {
     margin: 10px;
 }
 
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    #socialsContainer {
+        width: 80%;
+    }
+}
+
 #socialsButtons {
     display: flex;
+}
+
+#socialsButtons-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    scale: 0.7;
 }
 
 .social-button {
@@ -360,16 +420,43 @@ ul {
     /* background-color: #007bff; Set the background color of the social buttons */
     color: #fff; /* Set the color of the social button icons */
     text-decoration: none; /* Remove underline */
-    transition: background-color 0.2s;
+    transition: all 0.2s ease-in-out;
+}
+
+.social-button-detail {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    gap: 10px;
+    width: 97%;
+    height: 40px; /* Set the height of each social button */
+    border-radius: 20px;
+    border: 1px solid white;
+    margin-right: 10px; /* Add margin between social buttons */
+    /* background-color: #007bff; Set the background color of the social buttons */
+    color: #fff; /* Set the color of the social button icons */
+    text-decoration: none; /* Remove underline */
+    transition: all 0.2s ease-in-out;
+}
+
+.platform-link {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
 }
 
 .social-button i {
     font-size: 20px; /* Adjust the size of the social button icons */
 }
 
-.social-button:hover {
+.social-button:hover, .social-button-detail:hover {
+    cursor: pointer;
     background-color: white;
-    color: black; /* Change the color of the social button icons on hover */
+    color: rgb(13, 62, 62);
+    box-shadow: 0px 0px 20px aquamarine;
+    border: 1px solid aquamarine;
 }
 
 .links-list {
@@ -385,7 +472,7 @@ ul {
     display: flex;
     align-items: center; /* Center vertically */
     height: 50px;
-    width: 400px;
+    width: 97%;
     margin: 5px;
     border-radius: 5px;
     font-weight: bold;
@@ -400,7 +487,61 @@ ul {
 /* Styles for mobile devices */
 @media only screen and (max-width: 767px) {
     .link-item {
-        width: calc(100% - 10px); /* Make sure each link takes up at least one row on small screens */
+        width: 93%; /* Make sure each link takes up at least one row on small screens */
+    }
+}
+
+.link-item-detail {
+    display: flex;
+    align-items: center; /* Center vertically */
+    gap: 10px;
+    width: 97%;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: rgb(23, 123, 123);
+    color: white;
+    padding: 5px;
+    position: relative; /* Add positioning context to the link item */
+    transition: all 0.2s ease-in-out; /* Add transition for height */
+    border-top: 0.5px solid rgba(87, 252, 216, 0.656);
+}
+
+.link-content, .link-content-detail {
+    width: 100%;
+}
+
+.link-content-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#last_song {
+    margin-left: -5px;
+    width: 97%;
+}
+
+#last_song_list {
+    margin-left: -5px;
+    width: 410px;
+}
+
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    #last_song_list {
+        width: 97%;
+    }
+}
+
+#link-item-last {
+    width: 97%;
+}
+
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    #link-item-last {
+        width: 93%;
     }
 }
 
@@ -409,31 +550,73 @@ ul {
     height: auto; /* Maintain aspect ratio */
     margin-right: 10px; /* Adjust margin between artwork and link */
     border-radius: 3px;
-    box-shadow: 0 5px 5px rgba(103, 93, 93, 0.25), 0 -1px 0 rgba(255, 255, 255, 0.258);
+    box-shadow: 0 1px 2px rgb(13, 62, 62), 0 -1px 0 rgba(127, 255, 212, 0.661);
+    transition: all ease-in-out 0.3s;
+}
+
+.album-artwork-detail {
+    width: 100px; /* Adjust the width of the artwork */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Adjust margin between artwork and link */
+    border-radius: 3px;
+    box-shadow: 0 1px 30px rgba(13, 62, 62, 0.7);
+    border: 0.5px solid rgba(87, 252, 216, 0.656);
+    transition: all ease-in-out 0.3s;
+}
+
+.link-item.expanded .album-artwork {
+    border-radius: 3px;
+    box-shadow: 0 5px 10px rgb(29, 50, 46);
+    border: 0.5px solid rgba(87, 252, 216, 0.656);
+    margin-left: -10px;
+    margin-right: 20px;
+    scale: 1.3;
 }
 
 .album-title {
     text-decoration: none; /* Remove underline */
     margin-left: 5px;
     text-shadow: 0 2px  6px rgba(0, 0, 0, 0.4);
-        /* Allow text to wrap to 2 lines */
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        max-width: 260px;
+    /* Allow text to wrap to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 260px;
 }
 
 .platform-icons {
     display: flex;
     margin-top: 10px; /* Add margin between album title and platform icons */
+    scale: 0.8;
+    margin-left: -35px;
+}
+
+@media screen and (max-width: 767px) {
+    .platform-icons {
+    margin-left: -25px;
+    }
+}
+
+.platform-icons-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px; /* Add margin between album title and platform icons */
+    margin-bottom: 10px;
+}
+
+.platform-icons-detail .platform-text {
+    flex: 1; /* Allow text to take up remaining space */
+    padding-right: 25px;
+    text-align: center; /* Align text in the middle */
 }
 
 .expanded {
     height: auto; /* Allow the container to expand to fit the content when icons are expanded */
     transition: all .2s ease-in-out; /* Create a smooth animation for the expansion */
     padding: 10px;
-    box-shadow: 0 15px 50px rgb(29, 50, 46);
+    box-shadow: 0 15px 30px rgb(29, 50, 46);
     border: 0.5px solid rgba(87, 252, 216, 0.656);
 }
 
@@ -456,12 +639,68 @@ ul {
 /* Styles for mobile devices */
 @media only screen and (max-width: 767px) {
     #container {
-        width: 100%;
+        width: 95%;
         padding: 20px 10px;
         margin: 0;
         border-radius: 0;
         box-shadow: none;
         background-color: rgb(17, 83, 83);
+    }
+}
+
+#container-detail {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 50px rgba(10, 56, 51, 0.25), 0 -0.5px 0 rgba(87, 252, 216, 0.656);
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    background-color: rgb(17, 83, 83);
+    position: relative;
+    backdrop-filter: blur(20px); /* Additional blur effect for modern browsers */
+    overflow: hidden;
+}
+
+.background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: blur(20px); /* Blur effect for older browsers */
+    z-index: -2;
+    opacity: 0.5;
+}
+
+#container-detail::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to bottom, rgba(17, 83, 83, 0), rgba(17, 83, 83, 1));
+    z-index: -1;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    #container-detail {
+        width: 95%;
+        height: auto;
+        padding: 20px 10px;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
     }
 }
 
@@ -471,11 +710,18 @@ ul {
     right: 20px; /* Adjust the distance from the right */
     font-size: 16px; /* Adjust the size of the arrow icon */
     color: white; /* Set the color of the arrow icon */
-    transition: transform 0.2s ease-in-out; /* Add transition for smooth rotation */
+    transition: all 0.2s ease-in-out; /* Add transition for smooth rotation */
     text-shadow: 0 2px  6px rgba(0, 0, 0, 0.4);
 }
 
+.arrow-icon:hover {
+    cursor: pointer;
+    color:aquamarine;
+
+}
+
 a.link-item:hover i.arrow-icon {
+    cursor: pointer;
     color:black !important;
 }
 
@@ -499,9 +745,19 @@ a.link-item:hover i.arrow-icon {
     grid-template-columns:195px 1fr;
     gap: 10px; /* add a 10px gap between items */
     margin-top: 0;
+    margin-bottom: 5px;
 }
 
-.bio-button {
+/* Styles for mobile devices */
+@media only screen and (max-width: 767px) {
+    #action-buttons {
+        display: flex;
+        width: 95%;
+        gap: 5px;
+    }
+}
+
+.bio-button, .bio-button-list {
     text-decoration: none;
     text-align: center;
     font-weight: bolder;
@@ -515,18 +771,26 @@ a.link-item:hover i.arrow-icon {
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.374);
 }
 
-.bio-button:hover {
+.bio-button:hover, .bio-button-list:hover {
     cursor: pointer;
     background-color: rgb(7, 36, 36);
     color: aquamarine;
     box-shadow: 0px 0px 20px aquamarine;
-    border: 0.5px solid rgba(87, 252, 216, 1);
+    border: 1px solid rgba(87, 252, 216, 1);
 }
 
 /* Styles for mobile devices */
 @media only screen and (max-width: 767px) {
     .bio-button {
-        width: 87%;
+        display: block;
+        width: 89%;
+        margin: 0;
+    }
+
+    .bio-button-list {
+        display: block;
+        width: 89%;
+        margin-bottom: -25px;
     }
 }
 
@@ -580,16 +844,25 @@ hr {
     align-items: center;
 }
 
+#create-socials i {
+    width: 10px;
+    margin-right: 15px;
+}
+
 .social-inputs {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    column-gap: 10px;
+    width: 100%;
 }
 
 .social-inputs input::placeholder {
-    color: aquamarine;
+    color: rgba(127, 255, 212, 0.604);
+}
+
+.forms-template input::placeholder {
+    color: rgba(127, 255, 212, 0.604);
 }
 
 #copyright {
@@ -597,29 +870,66 @@ hr {
     color: rgb(8, 52, 52);
 }
 
-#logo-nav {
-    width: 75px;
-    height: 75px;
+@media only screen and (max-width: 767px) {
+    #text-copyright {
+        scale: 90%;
+    }
+
+    #copyright {
+        display: block;
+        font-size: 14px;
+
+    }
 }
 
+
+#logo-nav, #logo-biolink {
+    width: 75px;
+    height: 75px;
+    transition: all 0.2s ease-in-out;
+}
+
+#logo-nav:hover, #logo-biolink:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 20px aquamarine);
+}
 /* new hamburger */
 
 /* Style the navigation menu */
 .topnav {
     overflow: hidden;
-    position: relative;
+    position: static;
 }
 
 /* Hide the links inside the navigation menu (except for logo/home) */
 .topnav #myLinks {
     display: none;
-    position: fixed;
-    background-color: rgb(9, 47, 47);
+    position: absolute;
+    top: 105px;
+    left: 125px;
+    background: rgba(9, 47, 47, 0.548);
+    box-shadow: 0 8px 32px 0 rgba(21, 42, 35, 0.37);
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 6px );
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     padding-bottom: 0;
     margin-left: 10px;
-    box-shadow: 0px 5px 20px rgba(127, 255, 212, 0.74);
+    width: 100px;
+    border-top: solid 2px aquamarine;
+    transition: all 0.2s ease-in-out;
+}
+
+.topnav #myLinks.show {
+    display: inline-block;
+}
+
+@media only screen and (max-width: 767px) {
+    .topnav #myLinks {
+        left: 100px;
+        top: 80px;
+    }
 }
 
   /* Style navigation menu links */
@@ -628,15 +938,6 @@ hr {
     text-decoration: none;
     font-size: 17px;
     display: block;
-}
-
-/* Style the hamburger menu */
-.topnav a.icon {
-    font-size: 50px;
-    overflow: hidden;
-    padding: 10px;
-    margin-left: 10px;
-    z-index: 2;
 }
 
 /* Add a grey background color on mouse-over */
@@ -652,9 +953,195 @@ hr {
 
 .burger-buttons {
     font-weight: bold;
+    transition: all .2s ease-in-out;
 }
 
 .burger-buttons:hover {
+    cursor: pointer;
     font-size: 17.5px;
     font-weight: bolder;
+}
+
+#submit-button {
+    width: 100%;
+}
+
+.messages {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+.messages p {
+    display: inline-block;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: aquamarine;
+    border: 1px solid rgb(7, 36, 36);
+    color: rgb(9, 47, 47);
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.275);
+    animation: fadeInOut 5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* new hamburger */
+
+.burger {
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+
+    span {
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        transition: all 0.3s ease;
+        opacity: 1;
+
+        &:nth-of-type(1) {
+            top: 6px;
+        }
+
+        &:nth-of-type(2) {
+            top: 12px;
+        }
+
+        &:nth-of-type(3) {
+            top: 18px;
+        }
+    }
+
+    @media screen and (min-width: 767px) {
+        &.cross span:nth-of-type(1),
+        &.cross span:nth-of-type(3) {
+            top: 12px;
+            background-color: aquamarine;
+        }
+
+        &.cross span:nth-of-type(1) {
+            transform: rotate(45deg);
+        }
+
+        &.cross span:nth-of-type(2) {
+            opacity: 0;
+        }
+
+        &.cross span:nth-of-type(3) {
+            transform: rotate(-45deg);
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        &.cross span:nth-of-type(1),
+        &.cross span:nth-of-type(3) {
+            top: 12px;
+            background-color: aquamarine;
+        }
+
+        &.cross span:nth-of-type(1) {
+            transform: rotate(45deg);
+        }
+
+        &.cross span:nth-of-type(2) {
+            opacity: 0;
+        }
+
+        &.cross span:nth-of-type(3) {
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+.burger-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+
+#collapseAll {
+    background-color: rgb(17, 83, 83);
+    color: aquamarine;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid aquamarine;
+    border-radius: 3px;
+    cursor: auto;
+    transition: all .2s ease-in-out;
+}
+
+#collapseAll:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px aquamarine;
+}
+
+@media screen and (max-width: 767px) {
+    #collapseAll {
+        width: 94%;
+    }
+}
+
+#artist-song-detail {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.song-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.song-item {
+    display: block;
+    margin: 10px;
+}
+
+.song-artwork {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 3px solid rgb(8, 52, 52);
+}
+
+.song-artwork:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 50px aquamarine;
+    border: 3px solid aquamarine;
 }

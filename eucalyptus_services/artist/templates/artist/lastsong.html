@@ -1,0 +1,26 @@
+<h2 style="margin-left: 5px;">Latest Song</h2>
+<div class="link-item expanded">
+    <img src="/media/{{ last_song.artwork }}" class="album-artwork">
+        <div class="link-content">
+            <span class="album-title">{{ last_song.name }}</span>
+            <div class="platform-icons">
+                {% if last_song.soundcloud_url %}
+                    <a href="{{ last_song.soundcloud_url }}" target="_blank" class="social-button"><i class="fab fa-soundcloud"></i></a>
+                {% endif %}
+                {% if last_song.spotify_url %}
+                    <a href="{{ last_song.spotify_url }}" target="_blank" class="social-button"><i class="fab fa-spotify"></i></a>
+                {% endif %}
+                {% if last_song.applemusic_url %}
+                    <a href="{{ last_song.applemusic_url }}" target="_blank" class="social-button"><i class="fab fa-apple"></i></a>
+                {% endif %}
+                {% if last_song.youtube_url %}
+                    <a href="{{ last_song.youtube_url }}" target="_blank" class="social-button"><i class="fab fa-youtube"></i></a>
+                {% endif %}
+                {% if last_song.deezer_url %}
+                    <a href="{{ last_song.deezer_url }}" target="_blank" class="social-button"><i class="fab fa-deezer"></i></a>
+                {% endif %}
+                
+            </div>
+        </div>
+</div>
+<br>

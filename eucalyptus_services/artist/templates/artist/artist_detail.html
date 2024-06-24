@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block title %} Artist : {{artist.name}} {% endblock %}
 {% block content %}
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+<h1 id="artist-list">Artist Details</h1>
 <div id="artist-detail">
     <div class="forms-template">
         <div id="socialsContainer">
@@ -16,6 +24,9 @@
                 <a href="{{ artist.tiktok }}" target="_blank" class="social-button"><i class="fab fa-tiktok"></i></a>
             </div>
         </div>
+        <div id="last_song">
+            {% include 'artist/lastsong.html' %}
+        </div>
         <div id="action-buttons">
             {% if user.is_superuser or artist.associated_user == request.user %}
                 <a href="{% url 'artist_update' pk=artist.id %}" class="button">⥹ Update Artist</a>
@@ -26,13 +37,19 @@
 
         {% if artist.song_set.exists %}
         <h2>Songs :</h2>
-        <p id="text-song-edit">Click on a song to edit it.</p>
+        {% if artist.associated_user == request.user or user.is_superuser %}
+            <p id="text-song-edit">Click on a song to edit it.</p>
+        {% endif%}
         <ul id="songs-list">
         {% for song in artist.song_set.all reversed %}
             <li>
-                <a href="/song/update/{{ song.id }}" target="_blank">
+                {% if artist.associated_user == request.user or user.is_superuser %}
+                    <a href="/song/update/{{ song.id }}" target="_blank">
                     {{ song.name }}
                 </a>
+                {% else %}
+                    {{ song.name }}
+                {% endif%}
             </li>
             <hr>
         {% endfor %}

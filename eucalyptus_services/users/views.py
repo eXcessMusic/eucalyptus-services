@@ -25,12 +25,13 @@ def log_in(request):
             user = authenticate(request, username=username_form, password=password_form)
             if user:
                 login(request,user)
-                messages.success(request,f"Welcome {username_form}!")
+                messages.success(request,f"✅ Welcome {username_form}!")
                 return redirect('artist_list')
             
     return render(request, 'users/login.html', {'form': LoginForm})
 
 def log_out(request):
     logout(request)
+    messages.success(request, '👋 You are now logged out!')
     return redirect('artist_list')
 

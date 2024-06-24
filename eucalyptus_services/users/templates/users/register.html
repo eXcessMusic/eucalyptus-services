@@ -2,13 +2,15 @@
 {% block title %}S'inscrire{% endblock %}
 
 {% block content %}
-<div id="register-form">
-    <h1>Register</h1>
-    <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
+    <div id="register-form">
+        <div class="forms-template">
+            <h1>Register</h1>
+            <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-    <button type="submit">Register</button>
-    </form>
-</div>
+            <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

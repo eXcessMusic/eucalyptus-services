@@ -12,7 +12,7 @@
     
 </head>
 <body>
-<script src="{% static 'js/script.js' %}" defer></script>
+<script src="{% static 'js/script-biolink.js' %}" defer></script>
 <div id="container">
     <div id="socialsContainer">
         <img src="/media/{{artist.artist_logo}}" class="artistLogo" style="width: 100px;">
@@ -36,19 +36,19 @@
                 <i class="fas fa-chevron-down arrow-icon expand"></i>
                 <div class="platform-icons" style="display: none;">
                     {% if song.soundcloud_url %}
-                        <a href="{{ song.soundcloud_url }}" target="_blank" class="social-button"><i class="fab fa-soundcloud"></i></a>
+                        <a href="{{ song.soundcloud_url }}" target="_blank" class="social-button platform-link"><i class="fab fa-soundcloud"></i></a>
                     {% endif %}
                     {% if song.spotify_url %}
-                        <a href="{{ song.spotify_url }}" target="_blank" class="social-button"><i class="fab fa-spotify"></i></a>
+                        <a href="{{ song.spotify_url }}" target="_blank" class="social-button platform-link"><i class="fab fa-spotify"></i></a>
                     {% endif %}
                     {% if song.applemusic_url %}
-                        <a href="{{ song.applemusic_url }}" target="_blank" class="social-button"><i class="fab fa-apple"></i></a>
+                        <a href="{{ song.applemusic_url }}" target="_blank" class="social-button platform-link"><i class="fab fa-apple"></i></a>
                     {% endif %}
                     {% if song.youtube_url %}
-                        <a href="{{ song.youtube_url }}" target="_blank" class="social-button"><i class="fab fa-youtube"></i></a>
+                        <a href="{{ song.youtube_url }}" target="_blank" class="social-button platform-link"><i class="fab fa-youtube"></i></a>
                     {% endif %}
                     {% if song.deezer_url %}
-                        <a href="{{ song.deezer_url }}" target="_blank" class="social-button"><i class="fab fa-deezer"></i></a>
+                        <a href="{{ song.deezer_url }}" target="_blank" class="social-button platform-link"><i class="fab fa-deezer"></i></a>
                     {% endif %}
                 </div>
             </div>
@@ -56,8 +56,9 @@
     {% empty %}
         <p>No songs found.</p>
     {% endfor %}
+    <button id="collapseAll">&#8963 Collapse All</button>
     <p id="copyright">&copy; Copyright 2024 — Made with &#9829; by Thibault Paillon.</p>
-    <a href="{% url 'artist_list' %}"><img src="{% static 'media/LogoEucalyptusHolo.png' %}" id="logo-nav" tooltip="Click to see all artists."></a>
+    <a href="{% url 'home' %}"><img src="{% static 'media/LogoEucalyptusServicesv2.png' %}" id="logo-biolink" title="Click to see all artists."></a>
     </div>
     <footer>
 {% comment %}         <img src="/static/assets/excesslogostoryTurquoise small.png" alt="logo eXcess" id="logo"/>   {% endcomment %}

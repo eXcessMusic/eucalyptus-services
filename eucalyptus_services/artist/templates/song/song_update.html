@@ -2,17 +2,32 @@
 {% block title %}Song Update{% endblock %}
 
 {% block content %}
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+        <p class="message {{ message.tags }}">{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+<h1 id="artist-list">Update Song Details</h1>
     <div id="article-update">
         <div class="forms-template">
-            <h1>Update song details</h1>
             
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label for="name">Name :</label>
                 {{ form.name }}
                 
+                
+                {% if request.user.is_superuser %}
+                <br><br>
+                <label for="artist">Artist :</label>
+                    {{ form.artist }}
+                {% else %}
                 <label for="artist" hidden>Artist :</label>
-                {{ form.artist.readonly }}<br><br>
+                    <input type="text" name="artist" value="{{ request.user.artist.id }}" readonly hidden>
+                {% endif %}
+                <br><br>
             
                 <label for="artwork">Artwork :</label>
                 {{ form.artwork }}<br><br>

@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Artist Update{% endblock %}
-
 {% block content %}
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p class="message {{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <h1 id="artist-list">Update Artist</h1>
     <div id="article-update">
-        <h1>Update Artist</h1>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="name">Name :</label><br>
             {{ form.name }}<br><br>
@@ -13,48 +19,74 @@
             {{ form.description }}
             
             <br><br>
-            <label for="artist_logo">Artist Logo :</label><br><br>
-            {{ form.artist_logo }}
+            <label for="artist_logo_current">Artist Logo :</label><br>
+            {% if form.artist_logo.value %}
+                <img src="{{ form.artist_logo.value.url }}" alt="Artist Logo" style="width: 100px;">
+            {% endif %}
+            <br>
+            <label for="artist_logo">Upload New Logo:</label><br>
+            <input type="file" name="artist_logo"/>
             <h2>Socials</h2>
             <p>You can click on the platform icon to preview the link associated.</p>
             <div id="update-socials">
-            {% if social_media_links.facebook %}
-                <a href="{{ social_media_links.facebook }}" target="_blank" class="social-button"><i class="fab fa-facebook-f"></i></a>
-            {% endif %}
-            {{ form.facebook }}
-            <br>
+                <div class="socials-row">
+                    {% if social_media_links.facebook %}
+                        <a href="{{ social_media_links.facebook }}" target="_blank" class="social-button"><i class="fab fa-facebook-f"></i></a>
+                    {% endif %}
+                    {{ form.facebook }}
+                </div>
+                <br>
+                
+                <div class="socials-row">
+                    {% if social_media_links.instagram %}
+                        <a href="{{ social_media_links.instagram }}" target="_blank" class="social-button"><i class="fab fa-instagram"></i></a>
+                    {% endif %}
+                    {{ form.instagram }}
+                </div>
+                <br>
         
-            {% if social_media_links.instagram %}
-                <a href="{{ social_media_links.instagram }}" target="_blank" class="social-button"><i class="fab fa-instagram"></i></a>
-            {% endif %}
-            {{ form.instagram }}
-            <br>
+                <div class="socials-row">
+                    {% if social_media_links.soundcloud %}
+                        <a href="{{ social_media_links.soundcloud }}" target="_blank" class="social-button"><i class="fab fa-soundcloud"></i></a>
+                    {% endif %}
+                    {{ form.soundcloud }}
+                </div>
+                <br>
         
-            {% if social_media_links.soundcloud %}
-                <a href="{{ social_media_links.soundcloud }}" target="_blank" class="social-button"><i class="fab fa-soundcloud"></i></a>
-            {% endif %}
-            {{ form.soundcloud }}
-            <br><br>
-        
-            {% if social_media_links.spotify %}
-                <a href="{{ social_media_links.spotify }}" target="_blank" class="social-button"><i class="fab fa-spotify"></i></a>
-            {% endif %}
-            {{ form.spotify }}
-            <br>
+                <div class="socials-row">
+                    {% if social_media_links.spotify %}
+                        <a href="{{ social_media_links.spotify }}" target="_blank" class="social-button"><i class="fab fa-spotify"></i></a>
+                    {% endif %}
+                    {{ form.spotify }}
+                </div>
+                <br>
+            
 
-            {% if social_media_links.apple_music %}
-                <a href="{{ social_media_links.apple_music }}" target="_blank" class="social-button"><i class="fab fa-apple"></i></a>
-            {% endif %}
-            {{ form.apple_music }}
-            <br>
+                <div class="socials-row">
+                    {% if social_media_links.apple_music %}
+                        <a href="{{ social_media_links.apple_music }}" target="_blank" class="social-button"><i class="fab fa-apple"></i></a>
+                    {% endif %}
+                    {{ form.apple_music }}
+                </div>
+                <br>
         
-            {% if social_media_links.tiktok %}
-                <a href="{{ social_media_links.tiktok }}" target="_blank" class="social-button"><i class="fab fa-tiktok"></i></a>
-            {% endif %}
-            {{ form.tiktok }}
-            <br><br>
+                    <div class="socials-row">
+                        {% if social_media_links.tiktok %}
+                            <a href="{{ social_media_links.tiktok }}" target="_blank" class="social-button"><i class="fab fa-tiktok"></i></a>
+                        {% endif %}
+                        {{ form.tiktok }}
+                    </div>
+                    <br>
             </div>
             <br>
+            {% if request.user.is_superuser %}
+                <label for="associated_user">Associated User :</label><br>
+                {{ form.associated_user }}
+                <br><br>
+            {% else %}
+                <p>Associated User (uneditable) :</p>
+                <input type="text" value={{form.associated_user.value}} name="associated_user" readonly/>
+            {% endif %}
             <button type="submit" class="form-submit-button">Update Artist</button>
         </form>
     </div>

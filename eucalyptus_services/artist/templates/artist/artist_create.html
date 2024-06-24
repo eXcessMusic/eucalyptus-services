@@ -2,16 +2,23 @@
 {% block title %}Create a new artist{% endblock %}
 
 {% block content %}
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+        <p class="message {{ message.tags }}">{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+<h1 id="artist-list">Create New Artist</h1>
 <div id="article-create">
     <div class="forms-template">
-        <h1>Create a new artist</h1>
         
         <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         Name :<br>
-        {{ form.name }}<br><br>
+        <input type="text" name="name" placeholder="Enter the artist display name"><br><br>
         Description :<br>
-        {{ form.description }}<br><br>
+        <input type="text" name="description" placeholder="Enter the short description"><br><br>
         Logo :<br>
         {{ form.artist_logo }}<br><br>
         <h2>Socials</h2>

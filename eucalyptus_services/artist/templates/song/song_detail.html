@@ -1,0 +1,60 @@
+{% load fontawesome_6 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% fontawesome_6_static %} 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+<script src="{% static 'js/script-biolink.js' %}" defer></script>
+<div id="container-detail">
+    <div class="background-blur" style="background-image: url(/media/{{ song.artwork }});"></div>
+    <div id="socialsContainer">
+        <img src="/media/{{ song.artwork }}" class="album-artwork-detail">
+        <h3>{{ song.name }}</h3>
+    </div>
+        <div class="link-content-detail">
+            <div class="platform-icons-detail">
+                {% if song.soundcloud_url %}
+                    <a href="{{ song.soundcloud_url }}" target="_blank" class="social-button-detail"><i class="fab fa-soundcloud"></i><p class="platform-text">Listen on SoundCloud</p></a>
+                {% endif %}
+                {% if song.spotify_url %}
+                    <a href="{{ song.spotify_url }}" target="_blank" class="social-button-detail"><i class="fab fa-spotify"></i><p class="platform-text">Listen on Spotify</p></a>
+                {% endif %}
+                {% if song.applemusic_url %}
+                    <a href="{{ song.applemusic_url }}" target="_blank" class="social-button-detail"><i class="fab fa-apple"></i><p class="platform-text">Listen on Apple Music</p></a>
+                {% endif %}
+                {% if song.youtube_url %}
+                    <a href="{{ song.youtube_url }}" target="_blank" class="social-button-detail"><i class="fab fa-youtube"></i><p class="platform-text">Listen on YouTube</p></a>
+                {% endif %}
+                {% if song.deezer_url %}
+                    <a href="{{ song.deezer_url }}" target="_blank" class="social-button-detail"><i class="fab fa-deezer"></i><p class="platform-text">Listen on Deezer</p></a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div id="artist-song-detail">
+            <img src="/media/{{artist.artist_logo}}" class="artistLogo" style="width: 50px;">
+            <div id="socialsButtons-detail">
+                <a href="{{ artist.facebook }}" target="_blank" class="social-button"><i class="fab fa-facebook-f"></i></a>
+                <a href="{{ artist.instagram }}" target="_blank" class="social-button"><i class="fab fa-instagram"></i></a>
+                <a href="{{ artist.soundcloud }}" target="_blank" class="social-button"><i class="fab fa-soundcloud"></i></a>
+                <a href="{{ artist.spotify }}" target="_blank" class="social-button"><i class="fab fa-spotify"></i></a>
+                <a href="{{ artist.apple_music }}" target="_blank" class="social-button"><i class="fab fa-apple"></i></a>
+                <a href="{{ artist.tiktok }}" target="_blank" class="social-button"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    <p id="copyright">&copy; Copyright 2024 — Made with &#9829; by Thibault Paillon.</p>
+    <a href="{% url 'home' %}"><img src="{% static 'media/LogoEucalyptusServicesv2.png' %}" id="logo-biolink" title="Click to see all artists."></a>
+    </div>
+    <footer>
+{% comment %}         <img src="/static/assets/excesslogostoryTurquoise small.png" alt="logo eXcess" id="logo"/>   {% endcomment %}
+    </footer>
+</body>
+</html>
