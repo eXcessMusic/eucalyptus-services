@@ -1,84 +1,27 @@
-FROM python:latest
+# Use an official Python runtime as a parent image
+FROM python:3.12
 
-WORKDIR /eucalyptus-services
+# Set environment variables
+ENV PYTHONUNBUFFERED 1
+ENV DJANGO_SETTINGS_MODULE eucalyptus_services.settings
 
-#  source  destination
-COPY . .
+# Set work directory
+WORKDIR /app
 
-RUN pip install -r requirements.txt
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 8000
+# Install Python dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
-# VOLUME [ "monvolume:/data" ]
+# Copy project
+COPY . /app/
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Collect static files
+RUN python manage.py collectstatic --noinput
 
-
-# docker build -t eucalyptus-services:v1.0.0 .
-
-
-# ----------------------------------------------------------
-# Pour une DB :
-# FROM postgres:latest
-
-# ENV POSTGRES_USER=postgres
-# ENV POSTGRES_PASSWORD=postgres
-# ENV POSTGRES_DB=postgres
-
-# WORKDIR "/data"
-
-# COPY "init.sql" "/docker-entrypoint-initdb.d"
-
-# EXPOSE 5432
-
-# VOLUME [ "/var/postgres/pgdata:mydb_v" ]
-
-# Et puis faire la commande dans le terminal :
-# docker build -t mydb:v1.0.0 .
-
-# ----------------------------------------------------------
-# Et ensuite il faut faire un dossier qui comprend la DB et l'app et ajouter un fichier 'docker-compose.yml' avec les informations de la DB et de l'app :
-# version: '1'
-
-# networks:
-#   monreseau:
-#     internal: true
-#     ipam :
-#       driver: bridge
-#       config:
-#         - subnet: 10.0.0.0/16
-#           ip_range: 10.0.0.0/24
-#           gateway: 10.0.0.254
-
-# services:
-#   mydb:
-#     container_name: db_postgres_c
-#     image: mydb:v1.0.0
-#     ports:
-#       - "5432:5432"
-#     volumes:
-#       - mydb_v:/var/postgres/pgdata
-#     restart: always
-#     networks:
-#       - monreseau:
-#           ipv4_address: 10.0.0.2
-
-#   myapp:
-#     container_name: myapp_c
-#     image: myapp:v1.0.0
-#     ports:
-#       - "8000:8000"
-#     volumes:
-#       - myapp_v:/data
-#     depends_on:
-#       - mydb
-#     restart: unless-stopped
-# autre option : restart: on-failure[10] pour redémarrer 10x si échec
-
-#     networks:
-#       - monreseau
-
-# volumes:
-#   mydb_v:
-
-# Et enfin il faut faire un 'docker-compose up -d' pour build et lancer les deux containers.
+# Run gunicorn
+CMD gunicorn eucalyptus_services.wsgi:application --bind 0.0.0.0:$PORT

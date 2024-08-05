@@ -1,6 +1,6 @@
 <h2 style="margin-left: 5px;">Latest Song</h2>
 <div class="link-item expanded">
-    <img src="/media/{{ last_song.artwork }}" class="album-artwork">
+    <img src="{{ last_song.artwork.url }}" class="album-artwork">
         <div class="link-content">
             <span class="album-title">{{ last_song.name }}</span>
             <div class="platform-icons">

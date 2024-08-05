@@ -1,16 +1,54 @@
 {% extends "base.html" %}
-{% block title %}S'inscrire{% endblock %}
-
+{% block title %}Eucalyptus Services - Register new user{% endblock %}
 {% block content %}
-    <div id="register-form">
-        <div class="forms-template">
-            <h1>Register</h1>
-            <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
 
+<style>
+    .errorlist {
+        color: rgb(244, 170, 212);
+        font-style: italic;
+        font-size: 0.9em;
+        list-style-type: none;
+        padding: 0;
+        margin: 5px 0;
+    }
+
+    label[for="id_username"], label[for="id_password1"], label[for="id_password2"], label[for="id_email"], label[for="id_invite_code"] {
+        color: aquamarine;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div id="register-form">
+    <div class="forms-template">
+        <h1>Register</h1>
+        
+        <p>This registration is <b>by invitation only</b>. Please enter the invite code you received along with your other details.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% if field.errors %}
+                        <ul class="errorlist">
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <br>
+                </div>
+            {% endfor %}
             <button type="submit">Register</button>
-            </form>
-        </div>
+        </form>
     </div>
+</div>
+
 {% endblock %}

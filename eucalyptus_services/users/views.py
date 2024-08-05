@@ -2,18 +2,22 @@ from django.shortcuts import render, redirect
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .views import CustomUserCreationForm
+
 
 # Create your views here.
 
 def register(request):
-
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('artist_list')
-
-    return render(request, 'users/register.html', {'form': RegisterForm})
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Account created successfully! You can now create your artist profile.")
+            return redirect('artist_create')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'users/register.html', {'form': form})
 
 def log_in(request):
 

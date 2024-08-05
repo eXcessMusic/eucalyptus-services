@@ -1,6 +1,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from artist import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register(r'artist', views.ArtistViewSet)
@@ -22,3 +24,7 @@ urlpatterns = [
     path('song/delete/<int:pk>', views.song_delete, name="song_delete"),
     path('songs/', views.song_list, name="song_list")
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

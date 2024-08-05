@@ -15,7 +15,7 @@
 <script src="{% static 'js/script-biolink.js' %}" defer></script>
 <div id="container">
     <div id="socialsContainer">
-        <img src="/media/{{artist.artist_logo}}" class="artistLogo" style="width: 100px;">
+        <img src="{{artist.artist_logo.url}}" class="artistLogo" style="width: 100px;">
         <h2>{{ artist.name}}</h2>
         <p>{{ artist.description }}</p>
         <div id="socialsButtons">
@@ -30,7 +30,7 @@
     <p class="arrow-explanation">Click the arrow symbol to expand &#8964;</p>
     {% for song in songs reversed %}
     <div class="link-item">
-        <img src="/media/{{ song.artwork }}" class="album-artwork">
+        <img src="{{ song.artwork.url }}" class="album-artwork">
             <div class="link-content">
                 <span class="album-title">{{ song.name }}</span>
                 <i class="fas fa-chevron-down arrow-icon expand"></i>

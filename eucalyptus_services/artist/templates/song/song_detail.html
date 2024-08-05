@@ -14,9 +14,9 @@
 <body>
 <script src="{% static 'js/script-biolink.js' %}" defer></script>
 <div id="container-detail">
-    <div class="background-blur" style="background-image: url(/media/{{ song.artwork }});"></div>
+    <div class="background-blur" style="background-image: url({{ song.artwork.url }});"></div>
     <div id="socialsContainer">
-        <img src="/media/{{ song.artwork }}" class="album-artwork-detail">
+        <img src="{{ song.artwork.url }}" class="album-artwork-detail">
         <h3>{{ song.name }}</h3>
     </div>
         <div class="link-content-detail">
@@ -40,7 +40,7 @@
         </div>
 
         <div id="artist-song-detail">
-            <img src="/media/{{artist.artist_logo}}" class="artistLogo" style="width: 50px;">
+            <img src="{{artist.artist_logo.url}}" class="artistLogo" style="width: 50px;">
             <div id="socialsButtons-detail">
                 <a href="{{ artist.facebook }}" target="_blank" class="social-button"><i class="fab fa-facebook-f"></i></a>
                 <a href="{{ artist.instagram }}" target="_blank" class="social-button"><i class="fab fa-instagram"></i></a>

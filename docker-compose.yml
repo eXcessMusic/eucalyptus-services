@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: sh -c "python manage.py migrate && gunicorn eucalyptus_services.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env.database
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
+  static_volume:

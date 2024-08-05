@@ -9,6 +9,7 @@
     <title>{% block title %}{% endblock %}</title>
     {% fontawesome_6_static %} 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'media/favicon.ico' %}">
     <script src="{% static 'js/script.js' %}" defer></script>
 </head>
 <body>
@@ -37,11 +38,11 @@
         </div>
         <div id="log">
         {% if user.is_authenticated %}
-            <span><u>Connecté</u> : {{user}}</span>
-            <a href="{% url 'log_out' %}" id="logout-button">Déconnexion</a>
+            <span><u>Logged in</u> : {{user}}</span>
+            <a href="{% url 'log_out' %}" id="logout-button">Log Out</a>
         {% else %}
-            <a href="{% url 'log_in' %}" class="connect-buttons">Se connecter</a>
-            <a href="{% url 'register' %}" class="connect-buttons">Inscription</a>
+            <a href="{% url 'log_in' %}" class="connect-buttons">Log In</a>
+            <a href="{% url 'register' %}" class="connect-buttons">Register</a>
         {% endif %}
         </div>
     </nav>

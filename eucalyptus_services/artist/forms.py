@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ModelForm
 from .models import *
-from django.contrib.auth.models import User
 
 # class Create_article_form(forms.Form):
 #     titre = forms.CharField(max_length=100)

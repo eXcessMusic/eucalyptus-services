@@ -11,9 +11,9 @@
     <h1 id="artist-list">Artists List</h1>
     {% for artist in artists %}
     <div id="article-list">
-        <img class="sized-logo" src="/media/{{artist.artists.artist_logo}}" alt="Logo de {{artist.artists.name}}"/>
+        <img class="sized-logo" src="{{artist.artists.artist_logo.url}}" alt="Logo de {{artist.artists.name}}"/>
         <div>
-            <a href="{% url 'artist_detail' pk=artist.artists.id %}">{{artist.artists.name}}</a>
+            <a href="{% url 'artist_detail' pk=artist.artists.id %}" class="artist-name">{{artist.artists.name}}</a>
             <!-- <p>ID : {{artist.artists.id} </p>-->
         </div>
         <div id="last_song_list">

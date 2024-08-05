@@ -1,0 +1,15 @@
+# Remove environment variables from GitHub
+.env
+.env.database
+
+# Remove cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Remove data dump
+db_backup_*.json
+
+# Remove collectstatic folder before deployment
+/staticfiles/

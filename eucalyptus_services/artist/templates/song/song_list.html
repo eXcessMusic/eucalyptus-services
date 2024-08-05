@@ -7,7 +7,7 @@
         <div class="song-grid">
             {% for song in songs %}
                 <a href="{% url 'song_detail' song.pk %}" class="song-item">
-                    <img src="/media/{{ song.artwork }}" alt="Song Artwork" class="song-artwork">
+                    <img src="{{ song.artwork.url }}" alt="Song Artwork" class="song-artwork">
                 </a>
             {% endfor %}
         </div>
