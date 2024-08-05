@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED 1
 ENV DJANGO_SETTINGS_MODULE eucalyptus_services.settings
 
 # Set work directory
-WORKDIR /app/eucalyptus_services
+WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -21,4 +21,4 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY . /app/
 
 # Run gunicorn
-CMD gunicorn wsgi:application --bind 0.0.0.0:$PORT
+CMD gunicorn eucalyptus_services.wsgi:application --bind 0.0.0.0:$PORT
