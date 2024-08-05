@@ -14,6 +14,7 @@ from django.core.wsgi import get_wsgi_application
 # Add the project root directory to the Python path
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, project_root)
+sys.path.insert(0, os.path.dirname(project_root))  # Add parent directory of eucalyptus_services
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eucalyptus_services.settings')
 

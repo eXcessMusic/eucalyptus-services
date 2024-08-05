@@ -21,4 +21,4 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY . /app/
 
 # Run gunicorn
-CMD gunicorn eucalyptus_services.wsgi:application --bind 0.0.0.0:$PORT
+CMD cd /app/eucalyptus_services && gunicorn eucalyptus_services.wsgi:application --bind 0.0.0.0:$PORT
