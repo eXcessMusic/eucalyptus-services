@@ -13,7 +13,6 @@ services:
       - .env
     depends_on:
       - db
-    working_dir: /app/eucalyptus_services
 
   db:
     image: postgres:15
