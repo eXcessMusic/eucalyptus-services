@@ -13,6 +13,7 @@ services:
       - .env
     depends_on:
       - db
+    working_dir: /app/eucalyptus_services
 
   db:
     image: postgres:15
@@ -21,7 +22,7 @@ services:
     env_file:
       - .env.database
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
 volumes:
   postgres_data:
